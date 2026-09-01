@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+
+.venv/
+
+.ipynb_checkpoints/
+
+results/
+*.png
+*.pdf
+*.npy
+*.npz
