@@ -2,6 +2,7 @@ import numpy as np
 from scipy.signal import fftconvolve
 from scipy.special import factorial
 
+
 def check_radius_of_convergence(
     coeffs,
     nu=1.0,
@@ -66,6 +67,8 @@ def check_radius_of_convergence(
         ),
         "radii_derivative": radii_derivative,
     }
+
+
 def _convolve_rows(
     left,
     right,
@@ -76,6 +79,8 @@ def _convolve_rows(
         mode="full",
         axes=1,
     )
+
+
 def _derivative_recurrence_step(
     rho,
     mom,
@@ -163,6 +168,8 @@ def _derivative_recurrence_step(
         drho_next,
         dmom_next,
     )
+
+
 def current_series_and_gradient(
     a_indices,
     U_modes,
@@ -495,6 +502,8 @@ def current_series_and_gradient(
             dtype=float,
         ),
     )
+
+
 def borel_resum(
     terms,
     gradient_terms,
@@ -517,14 +526,14 @@ def borel_resum(
         dB += (
             gradient_terms[n]
             / factorial(n)
-        )[None,:] * (nu*s)[:,None]**n
+        )[None, :] * (nu*s)[:, None]**n
 
     weight = np.exp(-s)
 
-    current = np.trapz(weight*B, s)
+    current = np.trapezoid(weight*B, s)
 
-    gradient = np.trapz(
-        weight[:,None]*dB,
+    gradient = np.trapezoid(
+        weight[:, None]*dB,
         s,
         axis=0,
     )
